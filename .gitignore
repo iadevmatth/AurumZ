@@ -1,0 +1,58 @@
+# ── Sistema / SO
+.DS_Store
+Thumbs.db
+
+# ── Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+*.log.*
+.cache/
+.tmp/
+.nyc_output/
+
+# ── TypeScript
+*.tsbuildinfo
+
+# ── Build / Coverage
+dist/
+build/
+coverage/
+
+# ── Variáveis de ambiente (mantenha só o exemplo versionado)
+.env
+.env.*
+!.env.example
+
+# ── Editores / IDE
+.vscode/
+.idea/
+
+# ── React Native / Expo
+.expo/
+.expo-shared/
+.bundle/
+.metro-cache/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+*.keystore
+*.jks
+*.apk
+*.aab
+
+# iOS
+ios/build/
+ios/DerivedData/
+ios/Pods/
+
+# ── Pastas específicas (se quiser explicitar)
+frontend/node_modules/
+frontend/ios/Pods/
+backend/dist/

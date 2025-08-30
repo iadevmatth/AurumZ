@@ -1,0 +1,18 @@
+# Normaliza texto no repo (LF) e lida com Windows corretamente
+* text=auto eol=lf
+
+# Scripts por plataforma
+*.sh  text eol=lf
+*.bash text eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+# Linguagens comuns do projeto
+*.js   text eol=lf
+*.jsx  text eol=lf
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
