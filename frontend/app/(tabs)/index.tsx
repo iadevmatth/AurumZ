@@ -1,75 +1,108 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { theme } from "../theme";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function Home() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.brand}>Aurum<Text style={styles.brandZ}>Z</Text></Text>
+        <Text style={styles.subtitle}>Finanças + Carreira, com IA</Text>
+      </View>
+
+      {/* Cards */}
+      <View style={styles.grid}>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Salário</Text>
+          <Text style={styles.cardValue}>R$ 6.500</Text>
+          <Text style={styles.cardHint}>Na média de mercado</Text>
+          <View style={[styles.badge, { backgroundColor: theme.gold }]} />
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Objetivo</Text>
+          <Text style={styles.cardValue}>Migrar p/ Dados</Text>
+          <Pressable style={[styles.btn, { backgroundColor: theme.gold }]}>
+            <Text style={[styles.btnText, { color: "#0B1220" }]}>Ver Roadmap</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Dívidas</Text>
+          <Text style={[styles.cardValue, { color: theme.red }]}>R$ 2.300</Text>
+          <Text style={styles.cardHint}>Plano de quitação disponível</Text>
+          <Pressable style={[styles.btn, { backgroundColor: theme.red }]}>
+            <Text style={styles.btnText}>Ver Plano</Text>
+          </Pressable>
+        </View>
+      </View>
+
+      {/* Investimentos */}
+      <View style={styles.investBox}>
+        <Text style={styles.sectionTitle}>Investimentos sugeridos</Text>
+        <View style={styles.row}>
+          {["Tesouro Selic", "CDB 110% CDI", "ETFs Tech"].map((i, idx) => (
+            <View key={idx} style={styles.pill}>
+              <Text style={styles.pillText}>{i}</Text>
+            </View>
+          ))}
+        </View>
+        <Text style={styles.sectionHint}>Baseado no seu perfil (educacional)</Text>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  container: { flex: 1, backgroundColor: theme.bg, padding: 20, gap: 20 },
+  header: { gap: 6, marginTop: 6 },
+  brand: { color: theme.text, fontSize: 28, fontWeight: "800", letterSpacing: 0.5 },
+  brandZ: { color: theme.gold },
+  subtitle: { color: theme.subtext, fontSize: 14 },
+
+  grid: { flexDirection: "row", flexWrap: "wrap", gap: 16 },
+  card: {
+    backgroundColor: theme.card,
+    borderRadius: 16,
+    padding: 16,
+    width: "31%",
+    minWidth: 280,
     gap: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 4,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  cardTitle: { color: theme.subtext, fontSize: 13, letterSpacing: 0.3 },
+  cardValue: { color: theme.text, fontSize: 22, fontWeight: "700" },
+  cardHint: { color: theme.subtext, fontSize: 12 },
+  badge: { height: 4, width: 50, borderRadius: 2, marginTop: 6 },
+
+  btn: {
+    marginTop: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    alignSelf: "flex-start",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  btnText: { color: theme.text, fontWeight: "700" },
+
+  investBox: {
+    backgroundColor: theme.card,
+    borderRadius: 16,
+    padding: 16,
+    gap: 10,
   },
+  sectionTitle: { color: theme.text, fontSize: 16, fontWeight: "700" },
+  sectionHint: { color: theme.subtext, fontSize: 12 },
+  row: { flexDirection: "row", gap: 8, flexWrap: "wrap" },
+  pill: {
+    backgroundColor: "#0F1A2E",
+    borderColor: "#1F2A44",
+    borderWidth: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 999,
+  },
+  pillText: { color: theme.text, fontSize: 12 },
 });
